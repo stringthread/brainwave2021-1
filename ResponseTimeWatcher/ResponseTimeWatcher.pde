@@ -1,5 +1,6 @@
 import oscP5.*;
 import netP5.*;
+import processing.sound.*;
 
 final int N_CHANNELS = 4;
 final int N_CHANNELS_OUT=7; // 4センサ+額2つ平均+耳2つ平均+全センサ平均
@@ -32,6 +33,33 @@ float average(int band,int[] channels){
   return result/n;
 }
 
+final int FPS=60;
+final int AUDIO_DURATION=5000; // 音声を流す長さ[ms]
+final int AUDIO_INTERVAL=2000; // 音声を流す間隔[ms]
+
+SoundFile song;
+int play_state_changed_at;
+
+void setup(){
+  frameRate(FPS);
+  song=new SoundFile(this,"sample.mp3");
+}
+
+void draw(){
+  if(song.isPlaying()){
+    if(millis()-play_state_changed_at>=AUDIO_DURATION){
+      song.stop();
+      play_state_changed_at=millis();
+    }
+  } else {
+    if(millis()-play_state_changed_at>=AUDIO_INTERVAL){
+      song.loop();
+      play_state_changed_at=millis();
+    }
+  }
+}
+
+
 void oscEvent(OscMessage msg){
   int band;
   if(msg.checkAddrPattern("/muse/elements/alpha_relative")) band = 0;
@@ -53,6 +81,6 @@ void oscEvent(OscMessage msg){
   average_state[band][N_CHANNELS+0]=average(band,{1,2});
   average_state[band][N_CHANNELS+1]=average(band,{0,3});
   average_state[band][N_CHANNELS+2]=average(band,{0,1,2,3});
-  
+
   pointer[band] = (pointer[band] + 1) % BUFFER_SIZE;
 }
