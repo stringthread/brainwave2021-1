@@ -8,7 +8,7 @@ final int N_BANDS = 5;
 final int BUFFER_SIZE = 220;
 float[][][] buffer = new float[N_BANDS][N_CHANNELS_OUT][BUFFER_SIZE];
 int[] pointer = { 0, 0, 0, 0, 0 };
-float[] average_state=new float[N_BANDS][N_CHANNELS_OUT];
+float[][] average_state=new float[N_BANDS][N_CHANNELS_OUT];
 
 final String[] BAND_LABELS = new String[] {
   "alpha","beta","gamma","delta","theta"
@@ -25,7 +25,7 @@ float average(int band,int[] channels){
   float result=0;
   int n=0;
   int current_pointer;
-  for(int c in channels){
+  for(int c:channels){
     for(int i=0;i<AVERAGE_RANGE;i++){
       current_pointer=(pointer[band]-i+BUFFER_SIZE)%BUFFER_SIZE; // 負にならないようBUFFER_SIZEを足している
       if(buffer[band][c][current_pointer]==0) continue;
@@ -85,7 +85,7 @@ void dispose(){
   JSONArray json_ch=new JSONArray();
   JSONObject json_unit=new JSONObject();
   for(int b=0;b<N_BANDS;b++){
-    json_band=new JSONObject()
+    json_band=new JSONObject();
     for(int c=0;c<N_CHANNELS_OUT;c++){
       json_ch=new JSONArray();
       for(int i=0;i<N_LOOPS;i++){
@@ -113,8 +113,8 @@ final float[][] WAVE_THRESHOLD={
 float[][][] rt_in=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オン→閾値の反応時間
 float[][][] rt_out=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オフ→閾値の反応時間
 boolean[][] is_active=new boolean[N_BANDS][N_CHANNELS_OUT]; // 各バンド・チャネルで現在時点で閾値以上か表す
-int[][][] n_false_positive=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陽性数
-int[][][] n_false_negative=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陰性数
+int[][][] n_false_positive=new int[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陽性数
+int[][][] n_false_negative=new int[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陰性数
 
 void oscEvent(OscMessage msg){
   int band;
@@ -123,6 +123,7 @@ void oscEvent(OscMessage msg){
   else if(msg.checkAddrPattern("/muse/elements/gamma_relative")) band=2;
   else if(msg.checkAddrPattern("/muse/elements/delta_relative")) band=3;
   else if(msg.checkAddrPattern("/muse/elements/theta_relative")) band=4;
+  else return;
 
   for(int ch = 0; ch < N_CHANNELS; ch++){
     buffer[band][ch][pointer[band]] = msg.get(ch).floatValue();
@@ -132,11 +133,11 @@ void oscEvent(OscMessage msg){
   buffer[band][N_CHANNELS+2][pointer[band]]=(buffer[band][N_CHANNELS+0][pointer[band]]+buffer[band][N_CHANNELS+1][pointer[band]])/2;
 
   for(int ch = 0; ch < N_CHANNELS; ch++){
-    average_state[band][ch]=average(band,{ch});
+    average_state[band][ch]=average(band,new int[]{ch});
   }
-  average_state[band][N_CHANNELS+0]=average(band,{1,2});
-  average_state[band][N_CHANNELS+1]=average(band,{0,3});
-  average_state[band][N_CHANNELS+2]=average(band,{0,1,2,3});
+  average_state[band][N_CHANNELS+0]=average(band,new int[]{1,2});
+  average_state[band][N_CHANNELS+1]=average(band,new int[]{0,3});
+  average_state[band][N_CHANNELS+2]=average(band,new int[]{0,1,2,3});
 
   for(int ch=0;ch<N_CHANNELS_OUT;ch++){
     // 現在のaverage_stateの値がactiveなものか判定
