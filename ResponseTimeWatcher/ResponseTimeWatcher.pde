@@ -64,6 +64,13 @@ void draw(){
   if(loop_counter>=N_LOOPS) exit();
 }
 
+final float[][] WAVE_THRESHOLD={
+  {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f},
+  {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f},
+  {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f},
+  {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f},
+  {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f}
+}; // WAVE_THRESHOLD[band][ch]: 各バンド・チャネルの閾値
 float[][][] rt_in=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オン→閾値の反応時間
 float[][][] rt_out=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オフ→閾値の反応時間
 boolean[][] is_active=new boolean[N_BANDS][N_CHANNELS_OUT]; // 各バンド・チャネルで現在時点で閾値以上か表す
@@ -91,6 +98,20 @@ void oscEvent(OscMessage msg){
   average_state[band][N_CHANNELS+0]=average(band,{1,2});
   average_state[band][N_CHANNELS+1]=average(band,{0,3});
   average_state[band][N_CHANNELS+2]=average(band,{0,1,2,3});
+
+  for(int ch=0;ch<N_CHANNELS_OUT;ch++){
+    // 現在のaverage_stateの値がactiveなものか判定
+    boolean current_active_state=(average_state[band][ch]>WAVE_THRESHOLD[band][ch]);
+    // 閾値との上下関係がis_activeと同じなら普通なのでパス
+    if(current_active_state==is_active[band][ch]) continue;
+    // ここから閾値との上下関係が予想と違う時
+    if(current_active_state!=song.isPlaying()){ // 再生状態とactive_stateが一致していないときは応答待ち中
+      (current_active_state?rt_in:rt_out)[band][ch][loop_counter]=millis()-play_state_changed_at;
+      is_active[band][ch]=current_active_state;
+    } else { // この場合は応答待ちでないので偽陽性/偽陰性
+      (current_active_state?n_false_positive:n_false_negative)[band][ch][loop_counter]++;
+    }
+  }
 
   pointer[band] = (pointer[band] + 1) % BUFFER_SIZE;
 }
