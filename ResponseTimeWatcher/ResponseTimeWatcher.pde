@@ -36,13 +36,16 @@ float average(int band,int[] channels){
 final int FPS=60;
 final int AUDIO_DURATION=5000; // 音声を流す長さ[ms]
 final int AUDIO_INTERVAL=2000; // 音声を流す間隔[ms]
+final int N_LOOPS=20; // 音声のON/OFFの繰り返し個数
 
 SoundFile song;
 int play_state_changed_at;
+int loop_counter=0;
 
 void setup(){
   frameRate(FPS);
   song=new SoundFile(this,"sample.mp3");
+  play_state_changed_at=millis(); // NOTE: 本来は閾値補正のための時間を取ってからだが、テスト用ツールのため省略
 }
 
 void draw(){
@@ -50,6 +53,7 @@ void draw(){
     if(millis()-play_state_changed_at>=AUDIO_DURATION){
       song.stop();
       play_state_changed_at=millis();
+      loop_counter++;
     }
   } else {
     if(millis()-play_state_changed_at>=AUDIO_INTERVAL){
@@ -57,8 +61,14 @@ void draw(){
       play_state_changed_at=millis();
     }
   }
+  if(loop_counter>=N_LOOPS) exit();
 }
 
+float[][][] rt_in=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オン→閾値の反応時間
+float[][][] rt_out=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 音声オフ→閾値の反応時間
+boolean[][] is_active=new boolean[N_BANDS][N_CHANNELS_OUT]; // 各バンド・チャネルで現在時点で閾値以上か表す
+int[][][] n_false_positive=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陽性数
+int[][][] n_false_negative=new float[N_BANDS][N_CHANNELS_OUT][N_LOOPS]; // 各ループでの偽陰性数
 
 void oscEvent(OscMessage msg){
   int band;
