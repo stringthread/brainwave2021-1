@@ -10,7 +10,10 @@ float[][][] buffer = new float[N_BANDS][N_CHANNELS_OUT][BUFFER_SIZE];
 int[] pointer = { 0, 0, 0, 0, 0 };
 float[] average_state=new float[N_BANDS][N_CHANNELS_OUT];
 
-final String[] LABELS = new String[] {
+final String[] BAND_LABELS = new String[] {
+  "alpha","beta","gamma","delta","theta"
+};
+final String[] CH_LABELS = new String[] {
   "TP9", "FP1", "FP2", "TP10", "FP_avg", "TP_avg", "All_avg"
 };
 final int PORT = 5000;
@@ -62,6 +65,42 @@ void draw(){
     }
   }
   if(loop_counter>=N_LOOPS) exit();
+}
+
+void dispose(){
+  JSONObject json_root=new JSONObject();
+  json_root.setInt("Audio_Interval", AUDIO_INTERVAL);
+  json_root.setInt("Average_Range", AVERAGE_RANGE);
+  JSONObject json_threshold=new JSONObject();
+  JSONObject json_threshold_band=new JSONObject();
+  for(int b=0;b<N_BANDS;b++){
+    json_threshold_band=new JSONObject();
+    for(int c=0;c<N_CHANNELS_OUT;c++){
+      json_threshold_band.setFloat(CH_LABELS[c],WAVE_THRESHOLD[b][c]);
+    }
+    json_threshold.setJSONObject(BAND_LABELS[b],json_threshold_band);
+  }
+  json_root.setJSONObject("Thresholds", json_threshold);
+  JSONObject json_band=new JSONObject();
+  JSONArray json_ch=new JSONArray();
+  JSONObject json_unit=new JSONObject();
+  for(int b=0;b<N_BANDS;b++){
+    json_band=new JSONObject()
+    for(int c=0;c<N_CHANNELS_OUT;c++){
+      json_ch=new JSONArray();
+      for(int i=0;i<N_LOOPS;i++){
+        json_unit=new JSONObject();
+        json_unit.setFloat("RT_in",rt_in[b][c][i]);
+        json_unit.setFloat("RT_out",rt_out[b][c][i]);
+        json_unit.setFloat("False_positives",n_false_positive[b][c][i]);
+        json_unit.setFloat("False_negatives",n_false_negative[b][c][i]);
+        json_ch.setJSONObject(i,json_unit);
+      }
+      json_band.setJSONArray(CH_LABELS[c],json_ch);
+    }
+    json_root.setJSONObject(BAND_LABELS[b], json_band);
+  }
+  saveJSONObject(json_root,"out_interval_"+nf(AUDIO_INTERVAL)+"_range_"+nf(AVERAGE_RANGE)+".json");
 }
 
 final float[][] WAVE_THRESHOLD={
