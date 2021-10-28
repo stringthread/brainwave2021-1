@@ -2,3 +2,4 @@
 
 ## Members
 - 坂田唯純：stringthread
+- 加藤信人：Nobu-kt
