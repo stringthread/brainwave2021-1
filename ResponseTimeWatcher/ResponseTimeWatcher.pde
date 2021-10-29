@@ -68,6 +68,11 @@ void draw(){
 }
 
 void dispose(){
+  save();
+}
+
+void save(){
+  println("save has called");
   JSONObject json_root=new JSONObject();
   json_root.setInt("Audio_Interval", AUDIO_INTERVAL);
   json_root.setInt("Average_Range", AVERAGE_RANGE);
