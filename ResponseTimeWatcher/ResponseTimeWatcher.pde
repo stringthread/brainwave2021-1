@@ -71,6 +71,20 @@ void dispose(){
   save();
 }
 
+String generate_json_path(){
+  // [月日時分秒]_out_interval_[インターバル設定]_range_[平均化範囲].jsonを返す
+  return nf(month(),2)
+        +nf(day(),2)
+        +nf(hour(),2)
+        +nf(minute(),2)
+        +nf(second(),2)
+        +"_out_interval_"
+        +nf(AUDIO_INTERVAL)
+        +"_range_"
+        +nf(AVERAGE_RANGE)
+        +".json";
+}
+
 void save(){
   println("save has called");
   JSONObject json_root=new JSONObject();
@@ -105,7 +119,7 @@ void save(){
     }
     json_root.setJSONObject(BAND_LABELS[b], json_band);
   }
-  saveJSONObject(json_root,"out_interval_"+nf(AUDIO_INTERVAL)+"_range_"+nf(AVERAGE_RANGE)+".json");
+  saveJSONObject(json_root,generate_json_path());
 }
 
 final float[][] WAVE_THRESHOLD={
