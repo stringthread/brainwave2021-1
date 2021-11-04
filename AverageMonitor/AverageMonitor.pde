@@ -7,7 +7,7 @@ final int BUFFER_SIZE = 220;
 // final float MAX_MICROVOLTS = 1682.815;
 // final float DISPLAY_SCALE = 200.0;
 // from:https://sites.google.com/a/interaxon.ca/muse-developer-site/museio/osc-paths/osc-paths---v3-6-0#TOC-Raw-FFTs-for-Each-Channel
-final float DISPLAY_SCALE = - 400.0;
+final float DISPLAY_SCALE = - 200.0;
 final String[] LABELS = new String[] {
   "TP9", "FP1", "FP2", "TP10"
 };
@@ -75,7 +75,7 @@ void draw(){
 
 }
 
-final int AVERAGE_RANGE=64;
+final int AVERAGE_RANGE=60;
 
 float average(int band,int ch){
   float result=0;
