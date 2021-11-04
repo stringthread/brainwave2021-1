@@ -24,7 +24,7 @@ final int PORT = 5000;
 OscP5 oscP5 = new OscP5(this, PORT);
 
 float[][][] buffer = new float[N_BANDS][N_CHANNELS][BUFFER_SIZE];
-float[][] average_buffer=new float[N_BANDS][N_CHANNELS][BUFFER_SIZE];
+float[][][] average_buffer=new float[N_BANDS][N_CHANNELS][BUFFER_SIZE];
 // int pointer = 0;
 int[] pointer = { 0, 0, 0, 0, 0 };
 float[] offsetX = new float[N_CHANNELS];
@@ -79,15 +79,12 @@ final int AVERAGE_RANGE=64;
 
 float average(int band,int ch){
   float result=0;
-  int n=0;
   int current_pointer;
   for(int i=0;i<AVERAGE_RANGE;i++){
     current_pointer=(pointer[band]-i+BUFFER_SIZE)%BUFFER_SIZE; // 負にならないようBUFFER_SIZEを足している
-    if(buffer[band][ch][current_pointer]==0) continue;
     result+=buffer[band][ch][current_pointer];
-    n++;
   }
-  return result/n;
+  return result/AVERAGE_RANGE;
 }
 
 void oscEvent(OscMessage msg){
