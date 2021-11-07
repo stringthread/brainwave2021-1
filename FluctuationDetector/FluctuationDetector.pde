@@ -76,8 +76,8 @@ void draw(){
 }
 
 final int AVERAGE_RANGE=60; // 6秒間で移動平均
-final int THRESHOLD_TIME_LATENCY=20; // 2秒前を基準に閾値計算
-final float THRESHOLD_DIFFERENCE=0.5; // 2秒前からの下げ幅
+final int THRESHOLD_TIME_LATENCY=50; // 2秒前を基準に閾値計算
+final float THRESHOLD_DIFFERENCE=0.3; // 2秒前からの下げ幅
 
 float average(int ch){
   float result=0;
@@ -100,7 +100,7 @@ void oscEvent(OscMessage msg){
     int compared_pointer=(pointer-THRESHOLD_TIME_LATENCY+BUFFER_SIZE)%BUFFER_SIZE;
     final int DETECTED_CH=0;
     is_active_prev=is_active;
-    is_active=average_buffer[DETECTED_CH][pointer]<average_buffer[DETECTED_CH][compared_pointer];
+    is_active=average_buffer[DETECTED_CH][pointer]<average_buffer[DETECTED_CH][compared_pointer]-THRESHOLD_DIFFERENCE;
     pointer = (pointer + 1) % BUFFER_SIZE;
   }
 }
