@@ -2,11 +2,11 @@
 // 実際には、継承してdrawContentを実装したクラスを用いる
 
 abstract class BaseWindow {
-  private PApplet parent;
-  private PGraphics content;
-  private void drawContent(PGraphics); // contentに描画する処理
+  protected PApplet parent;
+  protected PGraphics content;
+  abstract protected void drawContent(PGraphics g); // contentに描画する処理
   public int x, y, w, h; // ウィンドウコンテンツの左上位置と大きさ
-  Window(PApplet parent, int x, int y, int w, int h) {
+  BaseWindow(PApplet parent, int x, int y, int w, int h) {
     this.parent=parent;
     this.x=x;
     this.y=y;
