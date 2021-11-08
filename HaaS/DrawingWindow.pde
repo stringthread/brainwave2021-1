@@ -12,8 +12,8 @@ static enum State {
 }
 
 class DrawingWindow extends BaseWindow{
-  private final int UNIT_WIDTH=10, UNIT_HEIGHT=10; // 1マスの幅と高さ [px]
-  private final int N_WIDTH=10, N_HEIGHT=10; // 横のマス数と縦のマス数
+  private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
+  private final int N_WIDTH=48, N_HEIGHT=13; // 横のマス数と縦のマス数
   private final int TIMEUNIT=100; // マスの値を更新する時間間隔 [ms]
   private State[] pixels=new State[UNIT_HEIGHT*UNIT_WIDTH];
   private int pointer;
@@ -24,6 +24,8 @@ class DrawingWindow extends BaseWindow{
   DrawingWindow(PApplet parent, int x, int y, int w, int h, FluctuationDetector fd){
     super(parent,x,y,w,h);
     this.fd=fd;
+    UNIT_WIDTH=w/N_WIDTH;
+    UNIT_HEIGHT=h/N_HEIGHT;
     reset();
   }
   void reset(){
