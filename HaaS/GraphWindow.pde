@@ -9,7 +9,7 @@ class GraphWindow extends BaseWindow {
   private final int ARROW_WIDTH=100,ARROW_HEIGHT=150;
 
   final float DISPLAY_SCALE = -200.0;
-  final int offsetY;
+  final int offsetX, offsetY;
   final color BG_COLOR = color(0, 0, 0);
   final color AXIS_COLOR = color(255, 0, 0);
   final color GRAPH_COLOR = color(0, 0, 255);
@@ -26,10 +26,8 @@ class GraphWindow extends BaseWindow {
     this.storage = storage;
     gGraph = this.parent.createGraphics(GRAPH_WIDTH,GRAPH_HEIGHT);
     gArrow = this.parent.createGraphics(ARROW_WIDTH,ARROW_HEIGHT);
-    offsetY = h/2;
-    /*BG_COLOR = this.parent.color(0, 0, 0);
-    AXIS_COLOR = this.parent.color(255, 0, 0);
-    GRAPH_COLOR = this.parent.color(0, 0, 255);*/
+    offsetX = (GRAPH_WIDTH-BrainWaveStorage.BUFFER_SIZE)/2;
+    offsetY = GRAPH_HEIGHT/2;
     // 矢印画像の読み込みとサイズ調整
     arrowOuter=loadImage("arrow1_outer.png");
     arrowOuter.resize(ARROW_WIDTH, ARROW_HEIGHT);
@@ -47,9 +45,9 @@ class GraphWindow extends BaseWindow {
     int x1, y1, x2, y2;
     for(int t = 0; t < storage.BUFFER_SIZE; t++){
       gGraph.stroke(GRAPH_COLOR);
-      x1 = t;
+      x1 = offsetX+t;
       y1 = offsetY+int(storage.fromAverageBuffer(t+storage.getPointer())*DISPLAY_SCALE);
-      x2 = t+1;
+      x2 = offsetX+t+1;
       y2 = offsetY+int(storage.fromAverageBuffer(t+1+storage.getPointer())*DISPLAY_SCALE);
       gGraph.line(x1, y1, x2, y2);
     }
@@ -59,6 +57,12 @@ class GraphWindow extends BaseWindow {
     y1 = offsetY;
     x2 = 0+storage.BUFFER_SIZE;
     y2 = offsetY;
+    gGraph.line(x1, y1, x2, y2);
+
+    x1 = offsetX;
+    y1 = offsetY-int(DISPLAY_SCALE/2);
+    x2 = offsetX;
+    y2 = offsetY+int(DISPLAY_SCALE/2);
     gGraph.line(x1, y1, x2, y2);
     gGraph.endDraw();
   }
