@@ -15,7 +15,7 @@ class DrawingWindow extends BaseWindow{
   private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
   private final int N_WIDTH=48, N_HEIGHT=13; // 横のマス数と縦のマス数
   private final int TIMEUNIT=100; // マスの値を更新する時間間隔 [ms]
-  private State[] pixels=new State[UNIT_HEIGHT*UNIT_WIDTH];
+  private State[] pixels;
   private int pointer;
   private int startTime;
   private boolean isDrawing;
@@ -26,6 +26,7 @@ class DrawingWindow extends BaseWindow{
     this.fd=fd;
     UNIT_WIDTH=w/N_WIDTH;
     UNIT_HEIGHT=h/N_HEIGHT;
+    pixels=new State[UNIT_HEIGHT*UNIT_WIDTH];
     reset();
   }
   void reset(){
