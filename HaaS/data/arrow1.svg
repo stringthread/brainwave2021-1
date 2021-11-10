@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2000"
+   height="3000"
+   viewBox="0 0 529.16666 793.75002"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="arrow1.svg"
+   inkscape:export-filename="C:\Users\yuito\Desktop\School\応用プロジェクト\前半\arrow1_back.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#2e2e2e"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:document-units="mm"
+     showgrid="true"
+     width="2000mm"
+     units="px"
+     inkscape:zoom="0.081890663"
+     inkscape:cx="299.17941"
+     inkscape:cy="1581.3769"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="1072"
+     inkscape:window-y="1176"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid9" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:none">
+    <path
+       id="rect112"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:260.874;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       d="M 960,139.875 V 1879.0059 Z M 130.41797,1980.4375 1000,2850.0176 1869.582,1980.4375 Z"
+       transform="scale(0.26458333)" />
+    <path
+       id="rect2398"
+       style="fill:#ffffff;stroke-width:0;stroke-linejoin:round"
+       d="m 264.58334,0 c -176.388892,0 -88.19444,0 0,0 z"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline">
+    <path
+       id="rect3006"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:292.232;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       d="M 0,0 V 3000 H 2000 V 0 H 960.00391 A 130.45003,130.45003 0 0 1 1090.4375,128.60742 V 1838.7324 h 779.1445 a 130.45003,130.45003 0 0 1 92.2364,222.668 l -869.586,869.5781 a 130.45003,130.45003 0 0 1 -184.46678,0 L 38.185547,2061.4004 a 130.45003,130.45003 0 0 1 92.230473,-222.668 H 829.5625 V 128.60742 A 130.45003,130.45003 0 0 1 843.04883,72.667969 130.45003,130.45003 0 0 1 879.28711,27.970703 130.45003,130.45003 0 0 1 931.23242,3.2109375 130.45003,130.45003 0 0 1 960.00391,0 Z m 445.32031,2099.6016 554.68169,554.6816 554.6835,-554.6816 z"
+       transform="scale(0.26458333)"
+       inkscape:export-filename="C:\Users\yuito\Desktop\School\応用プロジェクト\前半\arrow1_light.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Layer 3"
+     style="display:inline">
+    <path
+       id="rect3006-8"
+       style="fill:#daa138;fill-opacity:1;stroke:none;stroke-width:77.3197;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       d="M 117.82433,555.51958 264.58386,702.27909 411.34387,555.51958 Z"
+       sodipodi:nodetypes="cccc" />
+  </g>
+</svg>
