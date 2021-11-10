@@ -3,10 +3,10 @@
 class GraphWIndow extends BaseWindow {
   private BrainWaveStorage storage;
   private PGraphics gGraph, gArrow;
-  private final int GRAPH_X, GRAPH_Y;
-  private final int GRAPH_WIDTH,GRAPH_HEIGHT;
-  private final int ARROW_X, ARROW_Y;
-  private final int ARROW_WIDTH,ARROW_HEIGHT;
+  private final int GRAPH_X=25, GRAPH_Y=25;
+  private final int GRAPH_WIDTH=350,GRAPH_HEIGHT=350;
+  private final int ARROW_X=420, ARROW_Y=50;
+  private final int ARROW_WIDTH=100,ARROW_HEIGHT=300;
 
   final float DISPLAY_SCALE = -200.0;
   final int offsetY;
