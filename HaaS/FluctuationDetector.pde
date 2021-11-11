@@ -7,7 +7,7 @@ class FluctuationDetector {
   private boolean isOverThreshold, wasOverThreshold; // 現在と1ステップ前に閾値以上だったかを表す
   private boolean _isActive;
   public boolean isActive(){ return _isActive; } // このメソッドを呼び出して状態を取得する
-  public boolean setIsActive(boolean val){ _isActive=val; }
+  public void setIsActive(boolean val){ _isActive=val; }
 
   private BrainWaveStorage storage;
   FluctuationDetector(BrainWaveStorage storage){
