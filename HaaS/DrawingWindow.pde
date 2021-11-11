@@ -39,6 +39,7 @@ class DrawingWindow extends BaseWindow{
     isDrawing=true;
   }
   void drawContent(PGraphics g){
+    g.background(255);
     if(isDrawing && parent.millis()>=startTime+TIMEUNIT*pointer){
       pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
       pointer++;
@@ -47,8 +48,8 @@ class DrawingWindow extends BaseWindow{
       }
     }
     g.noStroke();
-    for(int y=0;y<UNIT_HEIGHT;y++){
-      for(int x=0;x<UNIT_WIDTH;x++){
+    for(int y=0;y<N_HEIGHT;y++){
+      for(int x=0;x<N_WIDTH;x++){
         g.fill(pixels[y*UNIT_WIDTH+x].getColor());
         g.rect(UNIT_WIDTH*x, UNIT_HEIGHT*y, UNIT_WIDTH, UNIT_HEIGHT);
       }

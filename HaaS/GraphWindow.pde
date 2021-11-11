@@ -53,9 +53,9 @@ class GraphWindow extends BaseWindow {
     }
     // 軸描画
     gGraph.stroke(AXIS_COLOR);
-    x1 = 0;
+    x1 = offsetX;
     y1 = offsetY;
-    x2 = 0+storage.BUFFER_SIZE;
+    x2 = offsetX+storage.BUFFER_SIZE;
     y2 = offsetY;
     gGraph.line(x1, y1, x2, y2);
 
