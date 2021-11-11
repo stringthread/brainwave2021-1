@@ -11,7 +11,7 @@ class SoundController {
   SoundController(PApplet parent){
     this.parent=parent; // メインファイルでthisが指す対象を持っていないと音声を読み込めない
     a = parent.loadTable("AppleLogo.csv", "header");
-    soundfile = new SoundFile(parent, "endroll.wav");
+    soundfile = new SoundFile(parent, "fly_in_the_head.mp3");
   }
   public void draw(){ // この関数をメインファイルのdraw関数で呼び出す想定
     // Processing特有の変数や関数を使いたい時は、`parent.***`という形で呼び出す
