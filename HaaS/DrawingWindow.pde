@@ -50,7 +50,7 @@ class DrawingWindow extends BaseWindow{
     g.noStroke();
     for(int y=0;y<N_HEIGHT;y++){
       for(int x=0;x<N_WIDTH;x++){
-        g.fill(pixels[y*UNIT_WIDTH+x].getColor());
+        g.fill(pixels[y*N_WIDTH+x].getColor());
         g.rect(UNIT_WIDTH*x, UNIT_HEIGHT*y, UNIT_WIDTH, UNIT_HEIGHT);
       }
     }
