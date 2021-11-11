@@ -14,7 +14,7 @@ static enum State {
 class DrawingWindow extends BaseWindow{
   private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
   private final int N_WIDTH=48, N_HEIGHT=13; // 横のマス数と縦のマス数
-  private final int TIMEUNIT=100; // マスの値を更新する時間間隔 [ms]
+  private final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
   private int prevTimeUpdated;
   private State[] pixels;
   private int pointer;

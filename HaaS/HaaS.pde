@@ -22,6 +22,8 @@ void setup(){
   int dwSize=min(height,width-540);
   dw=new DrawingWindow(this,0,0,dwSize,dwSize,fd);
   gw=new GraphWindow(this,height,0,540,400,bws);
+  dw.start();
+  frameRate(60);
 }
 void draw(){
   background(255); // 適当に設定
