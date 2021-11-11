@@ -10,7 +10,7 @@ class SoundController {
   int j = 0;
   SoundController(PApplet parent){
     this.parent=parent; // メインファイルでthisが指す対象を持っていないと音声を読み込めない
-    a = parent.loadTable("AppleLogo.csv", "header");
+    a = parent.loadTable("rubin.csv", "header");
     soundfile = new SoundFile(parent, "fly_in_the_head.mp3");
   }
   public void draw(){ // この関数をメインファイルのdraw関数で呼び出す想定
@@ -24,7 +24,7 @@ class SoundController {
     }
 
     //stop noise when 1 -> 0
-    if ((j+1!=48)&&(a.getInt(i,j) == 1)&&(a.getInt(i,j+1) == 0)){
+    if ((j+1!=34)&&(a.getInt(i,j) == 1)&&(a.getInt(i,j+1) == 0)){
       soundfile.stop();
     }
 
