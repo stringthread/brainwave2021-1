@@ -8,6 +8,7 @@ class SoundController {
   Table a;
   int i = 0;
   int j = 0;
+  int count = 0;
   SoundController(PApplet parent){
     this.parent=parent; // メインファイルでthisが指す対象を持っていないと音声を読み込めない
   }
@@ -19,7 +20,14 @@ class SoundController {
   }
   public void draw(){ // この関数をメインファイルのdraw関数で呼び出す想定
     // Processing特有の変数や関数を使いたい時は、`parent.***`という形で呼び出す
-      //make noise when 0 -> 1
+    count += 1;
+    
+    if(count != 30){
+      return;
+    }
+    count = 0;
+    
+    //make noise when 0 -> 1
     if ((j!=0)&&(a.getInt(i,j-1) == 0)&&(a.getInt(i,j) == 1)){
       soundfile.loop();
     }
