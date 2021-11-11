@@ -18,6 +18,7 @@ class DrawingWindow extends BaseWindow{
   private State[] pixels;
   private int pointer;
   private boolean isDrawing;
+  public boolean isDrawing(){return isDrawing;}
   private boolean isStepForwarding;
   public void step(){ isStepForwarding=true; }
   private FluctuationDetector fd;
@@ -44,6 +45,7 @@ class DrawingWindow extends BaseWindow{
       isStepForwarding=false;
       pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
       pointer++;
+      if(pointer%N_WIDTH==0) fd.setIsActive(false);
       if(pointer>=pixels.length){
         isDrawing=false;
       }
