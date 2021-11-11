@@ -19,6 +19,8 @@ class DrawingWindow extends BaseWindow{
   private State[] pixels;
   private int pointer;
   private boolean isDrawing;
+  private boolean isStepForwarding;
+  public void step(){ isStepForwarding=true; }
   private FluctuationDetector fd;
 
   DrawingWindow(PApplet parent, int x, int y, int w, int h, FluctuationDetector fd){
@@ -40,10 +42,10 @@ class DrawingWindow extends BaseWindow{
   }
   void drawContent(PGraphics g){
     g.background(255);
-    if(isDrawing && parent.millis()>=prevTimeUpdated+TIMEUNIT){
+    if(isDrawing && isStepForwarding){
+      isStepForwarding=false;
       pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
       pointer++;
-      prevTimeUpdated=parent.millis();
       if(pointer>=pixels.length){
         isDrawing=false;
       }

@@ -8,8 +8,6 @@ class SoundController {
   Table a;
   int i = 0;
   int j = 0;
-  private final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
-  private int prevTimeUpdated;
   SoundController(PApplet parent){
     this.parent=parent; // メインファイルでthisが指す対象を持っていないと音声を読み込めない
     a = parent.loadTable("AppleLogo.csv", "header");
@@ -18,6 +16,8 @@ class SoundController {
   }
   public void draw(){ // この関数をメインファイルのdraw関数で呼び出す想定
     // Processing特有の変数や関数を使いたい時は、`parent.***`という形で呼び出す
+  }
+  public void step(){
     if(parent.millis()<prevTimeUpdated+TIMEUNIT){
       return;
     }

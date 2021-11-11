@@ -7,6 +7,8 @@ FluctuationDetector fd;
 SoundController sc;
 DrawingWindow dw;
 GraphWindow gw;
+final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
+int prevTimeUpdated;
 
 final int PORT = 5000;
 OscP5 oscP5 = new OscP5(this, PORT);
@@ -23,10 +25,16 @@ void setup(){
   dw=new DrawingWindow(this,0,0,dwSize,dwSize,fd);
   gw=new GraphWindow(this,height,0,540,400,bws);
   dw.start();
+  prevTimeUpdated=millis();
   frameRate(60);
 }
 void draw(){
   background(255); // 適当に設定
+  if(millis()>=prevTimeUpdated+TIMEUNIT){
+    sc.step();
+    dw.step();
+    prevTimeUpdated=millis();
+  }
   fd.draw();
   sc.draw();
   dw.draw();
