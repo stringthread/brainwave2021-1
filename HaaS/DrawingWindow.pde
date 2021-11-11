@@ -15,9 +15,9 @@ class DrawingWindow extends BaseWindow{
   private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
   private final int N_WIDTH=48, N_HEIGHT=13; // 横のマス数と縦のマス数
   private final int TIMEUNIT=100; // マスの値を更新する時間間隔 [ms]
+  private int prevTimeUpdated;
   private State[] pixels;
   private int pointer;
-  private int startTime;
   private boolean isDrawing;
   private FluctuationDetector fd;
 
@@ -32,7 +32,7 @@ class DrawingWindow extends BaseWindow{
   void reset(){
     Arrays.fill(pixels,State.UNINITIALIZED);
     pointer=0;
-    startTime=parent.millis();
+    prevTimeUpdated=this.parent.millis();
   }
   void start(){
     reset();
@@ -40,9 +40,10 @@ class DrawingWindow extends BaseWindow{
   }
   void drawContent(PGraphics g){
     g.background(255);
-    if(isDrawing && parent.millis()>=startTime+TIMEUNIT*pointer){
+    if(isDrawing && parent.millis()>=prevTimeUpdated+TIMEUNIT){
       pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
       pointer++;
+      prevTimeUpdated=parent.millis();
       if(pointer>=pixels.length){
         isDrawing=false;
       }
