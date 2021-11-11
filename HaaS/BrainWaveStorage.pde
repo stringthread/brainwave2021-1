@@ -35,7 +35,7 @@ class BrainWaveStorage {
 
   public void oscEvent(OscMessage msg){ // これをメインファイルのoscEventで呼び出す
     float data;
-    if(msg.checkAddrPattern("/muse/elements/alpha_absolute")){
+    if(msg.checkAddrPattern("/muse/elements/alpha_relative")){
       buffer[pointer]=msg.get(DETECTED_CH).floatValue();
       averageBuffer[pointer]=average();
       pointer=(pointer + 1) % BUFFER_SIZE;
