@@ -8,7 +8,7 @@ class GraphWindow extends BaseWindow {
   private final int ARROW_X=420, ARROW_Y=125;
   private final int ARROW_WIDTH=100,ARROW_HEIGHT=150;
 
-  final float DISPLAY_SCALE = -200.0;
+  final float DISPLAY_SCALE = -100.0;
   final int offsetX, offsetY;
   final color BG_COLOR = color(0, 0, 0);
   final color AXIS_COLOR = color(255, 0, 0);
@@ -63,6 +63,13 @@ class GraphWindow extends BaseWindow {
     y1 = offsetY-int(DISPLAY_SCALE/2);
     x2 = offsetX;
     y2 = offsetY+int(DISPLAY_SCALE/2);
+    gGraph.line(x1, y1, x2, y2);
+
+    // 閾値描画
+    x1 = offsetX;
+    y1 = offsetY+int(0.6*DISPLAY_SCALE);
+    x2 = GRAPH_WIDTH;
+    y2 = y1;
     gGraph.line(x1, y1, x2, y2);
     gGraph.endDraw();
   }
