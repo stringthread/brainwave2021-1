@@ -67,7 +67,7 @@ class GraphWindow extends BaseWindow {
 
     // 閾値描画
     x1 = offsetX;
-    y1 = offsetY+int(0.6*DISPLAY_SCALE);
+    y1 = offsetY+int(0.3f*DISPLAY_SCALE);
     x2 = GRAPH_WIDTH;
     y2 = y1;
     gGraph.line(x1, y1, x2, y2);

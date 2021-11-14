@@ -16,7 +16,7 @@ class FluctuationDetector {
 
   public void draw(){
     wasOverThreshold=isOverThreshold;
-    isOverThreshold=storage.fromAverageBuffer()<0.6f;
+    isOverThreshold=storage.fromAverageBuffer()<0.3f;
     if(isOverThreshold==true&&wasOverThreshold==false) _isActive=!_isActive; // 閾値との上下関係が変化したら状態をトグル
   }
 }
