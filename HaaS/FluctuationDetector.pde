@@ -14,13 +14,9 @@ class FluctuationDetector {
     this.storage=storage;
   }
 
-  final int THRESHOLD_TIME_LATENCY=50; // 閾値計算の基準とする時間差 [/Frames]
-  final float THRESHOLD_DIFFERENCE=0.3; // 下げ幅の閾値
-
   public void draw(){
-    int compared_pointer=storage.getPointer()-THRESHOLD_TIME_LATENCY;
     wasOverThreshold=isOverThreshold;
-    isOverThreshold=storage.fromAverageBuffer()<storage.fromAverageBuffer(compared_pointer)-THRESHOLD_DIFFERENCE;
-    if(isOverThreshold!=wasOverThreshold) _isActive=!_isActive; // 閾値との上下関係が変化したら状態をトグル
+    isOverThreshold=storage.fromAverageBuffer()<0.6f;
+    if(isOverThreshold==true&&wasOverThreshold==false) _isActive=!_isActive; // 閾値との上下関係が変化したら状態をトグル
   }
 }
