@@ -31,7 +31,7 @@ void setup(){
 }
 void draw(){
   background(255); // 適当に設定
-  if(!dw.isDrawing()&&millis()-startAt>=2000) dw.start();
+  if(!dw.isDrawing()&&millis()-startAt>=5000) dw.start();
   if(millis()>=prevTimeUpdated+TIMEUNIT){
     sc.step();
     if(dw.isDrawing()) dw.step();
