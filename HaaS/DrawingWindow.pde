@@ -43,7 +43,7 @@ class DrawingWindow extends BaseWindow{
     g.background(255);
     if(isDrawing && isStepForwarding){
       isStepForwarding=false;
-      pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
+      pixels[pointer]=fd.isActive()?State.WHITE:State.BLACK;
       pointer++;
       if(pointer%N_WIDTH==0) fd.restart();
       if(pointer>=pixels.length){
