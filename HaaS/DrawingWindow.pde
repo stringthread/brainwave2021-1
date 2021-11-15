@@ -34,6 +34,7 @@ class DrawingWindow extends BaseWindow{
   void reset(){
     Arrays.fill(pixels,State.UNINITIALIZED);
     pointer=0;
+    fd.restart();
   }
   void start(){
     reset();
