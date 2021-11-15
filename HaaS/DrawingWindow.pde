@@ -45,7 +45,7 @@ class DrawingWindow extends BaseWindow{
       isStepForwarding=false;
       pixels[pointer]=fd.isActive()?State.BLACK:State.WHITE;
       pointer++;
-      if(pointer%N_WIDTH==0) fd.setIsActive(true);
+      if(pointer%N_WIDTH==0) fd.restart();
       if(pointer>=pixels.length){
         isDrawing=false;
       }
