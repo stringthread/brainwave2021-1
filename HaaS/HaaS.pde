@@ -24,14 +24,14 @@ void setup(){
   int dwSize=min(height,width-540);
   dw=new DrawingWindow(this,0,0,dwSize,dwSize,fd);
   gw=new GraphWindow(this,height,0,540,400,bws);
-  dw.start();
   prevTimeUpdated=millis();
   startAt=millis();
   frameRate(60);
 }
 void draw(){
   background(255); // 適当に設定
-  if(!dw.isDrawing()&&millis()-startAt>=5000) dw.start();
+  if(!sc.isRunning()&&millis()-startAt>=6000) sc.start();
+  if(!dw.isDrawing()&&millis()-startAt>=9000) dw.start();
   if(millis()>=prevTimeUpdated+TIMEUNIT){
     sc.step();
     if(dw.isDrawing()) dw.step();

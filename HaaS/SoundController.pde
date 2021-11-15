@@ -6,6 +6,9 @@ class SoundController {
   private PApplet parent;
   SoundFile soundfile;
   Table a;
+  boolean isRunning;
+  boolean isRunning(){ return isRunning; }
+  void start(){ isRunning=true; }
   int i = 0;
   int j = 0;
   SoundController(PApplet parent){
@@ -17,7 +20,7 @@ class SoundController {
     // Processing特有の変数や関数を使いたい時は、`parent.***`という形で呼び出す
   }
   public void step(){
-
+    if(!isRunning) return;
     //make noise when 0 -> 1
     if ((j!=0)&&(a.getInt(i,j-1) == 0)&&(a.getInt(i,j) == 1)){
       soundfile.play();
