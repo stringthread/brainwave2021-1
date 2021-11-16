@@ -14,6 +14,7 @@ static enum State {
 class DrawingWindow extends BaseWindow{
   private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
   private final int N_WIDTH=34, N_HEIGHT=12; // 横のマス数と縦のマス数
+  private final int offsetX, offsetY; // 画像位置のオフセット(padding内部が基準)
   private final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
   private State[] pixels;
   private int pointer;
@@ -26,8 +27,10 @@ class DrawingWindow extends BaseWindow{
   DrawingWindow(PApplet parent, int x, int y, int w, int h, FluctuationDetector fd){
     super(parent,x,y,w,h);
     this.fd=fd;
-    UNIT_WIDTH=w/N_WIDTH;
-    UNIT_HEIGHT=h/N_HEIGHT;
+    UNIT_WIDTH=this.w/N_WIDTH/2;
+    UNIT_HEIGHT=this.h/N_HEIGHT;
+    offsetX=(this.w-UNIT_WIDTH*N_WIDTH*2)/2;
+    offsetY=(this.h-UNIT_HEIGHT*N_HEIGHT)/2;
     pixels=new State[UNIT_HEIGHT*UNIT_WIDTH];
     reset();
   }
@@ -40,7 +43,7 @@ class DrawingWindow extends BaseWindow{
     isDrawing=true;
   }
   void drawContent(PGraphics g){
-    g.background(255);
+    g.background(FILL_COLOR);
     if(isDrawing && isStepForwarding){
       isStepForwarding=false;
       pixels[pointer]=fd.isActive()?State.WHITE:State.BLACK;
@@ -54,7 +57,8 @@ class DrawingWindow extends BaseWindow{
     for(int y=0;y<N_HEIGHT;y++){
       for(int x=0;x<N_WIDTH;x++){
         g.fill(pixels[y*N_WIDTH+x].getColor());
-        g.rect(UNIT_WIDTH*x, UNIT_HEIGHT*y, UNIT_WIDTH, UNIT_HEIGHT);
+        g.rect(offsetX+UNIT_WIDTH*x, offsetY+UNIT_HEIGHT*y, UNIT_WIDTH, UNIT_HEIGHT);
+        g.rect(offsetX+UNIT_WIDTH*(N_WIDTH*2-x-1), offsetY+UNIT_HEIGHT*y, UNIT_WIDTH, UNIT_HEIGHT);
       }
     }
   }
