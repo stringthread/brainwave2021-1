@@ -53,6 +53,7 @@ void draw(){
   dw.draw();
   gw.draw();
   link.draw();
+  aw.setIsArrowMoving(sc.soundfile.isPlaying());
   aw.draw();
 }
 void oscEvent(OscMessage msg){
