@@ -8,6 +8,7 @@ abstract class BaseWindow {
   public int x, y, w, h; // ウィンドウコンテンツの左上位置と大きさ
   private int outer_x, outer_y, outer_w, outer_h; // ウィンドウ自体の左上位置と大きさ
   private final int PADDING=40, CORNER_RADIUS=12;
+  protected final int STROKE_COLOR=0, FILL_COLOR=245;
   BaseWindow(PApplet parent, int x, int y, int w, int h) {
     this.parent=parent;
     outer_x=x; outer_y=y; outer_w=w; outer_h=h;
@@ -22,8 +23,8 @@ abstract class BaseWindow {
     drawContent(content);
     content.endDraw();
     parent.strokeWeight(2);
-    parent.stroke(0);
-    parent.fill(245);
+    parent.stroke(STROKE_COLOR);
+    parent.fill(FILL_COLOR);
     parent.rect(outer_x,outer_y,outer_w,outer_h,CORNER_RADIUS);
     parent.image(content, x, y);
   }
