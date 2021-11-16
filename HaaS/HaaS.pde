@@ -8,6 +8,7 @@ SoundController sc;
 DrawingWindow dw;
 GraphWindow gw;
 ArrowWindow aw;
+LinkLine link;
 final int BLACK_W=200;
 final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
 int prevTimeUpdated, startAt;
@@ -26,6 +27,7 @@ void setup(){
   int dwSize=min(height,width-540);
   dw=new DrawingWindow(this,0,(height-dwSize)/2,dwSize,dwSize,fd);
   gw=new GraphWindow(this, width-BLACK_W-520, height/2-150, 520,300,bws);
+  link=new LinkLine(this,dwSize,height/2,width-BLACK_W-520,height/2);
   aw=new ArrowWindow(this, width-175, height/2-125, 150,250);
   prevTimeUpdated=millis();
   startAt=millis();
@@ -50,6 +52,7 @@ void draw(){
   sc.draw();
   dw.draw();
   gw.draw();
+  link.draw();
   aw.draw();
 }
 void oscEvent(OscMessage msg){
