@@ -6,7 +6,7 @@ class ArrowWindow extends BaseWindow {
   private boolean isArrowMoving,isArrowLightOn;
   public void setIsArrowMoving(boolean val){ isArrowMoving=val; }
   private int yBorderTop=0;
-  private final int BORDER_WEIGHT=20, BORDER_INTERVAL=60;
+  private final int BORDER_WEIGHT=20, BORDER_INTERVAL=40;
   private final int BORDER_SPEED=2; // ボーダーの下降速度[px/frame]
 
   ArrowWindow(PApplet parent, int x, int y, int w, int h){
