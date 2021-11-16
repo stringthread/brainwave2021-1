@@ -2,7 +2,6 @@
 
 class ArrowWindow extends BaseWindow {
   private final int X_PADDING=25,Y_PADDING=50;
-  private final int ARROW_WIDTH, ARROW_HEIGHT;
   private PImage arrowBack;
   private boolean isArrowMoving,isArrowLightOn;
   public void setIsArrowMoving(boolean val){ isArrowMoving=val; }
@@ -12,30 +11,32 @@ class ArrowWindow extends BaseWindow {
 
   ArrowWindow(PApplet parent, int x, int y, int w, int h){
     super(parent,x,y,w,h);
-    ARROW_WIDTH=this.w-X_PADDING*2;
-    ARROW_HEIGHT=this.h-Y_PADDING*2;
+    // 独自のPaddingで再調整
+    this.x=x+X_PADDING;
+    this.y=y+Y_PADDING;
+    this.w=w-X_PADDING*2;
+    this.h=h-Y_PADDING*2;
+    this.content=parent.createGraphics(this.w,this.h);
     // 矢印画像の読み込みとサイズ調整
     arrowBack=loadImage("arrow1_back.png");
-    arrowBack.resize(ARROW_WIDTH, ARROW_HEIGHT);
+    arrowBack.resize(this.w, this.h);
   }
 
   void drawContent(PGraphics g){
-    g.beginDraw();
     g.background(FILL_COLOR);
     g.noStroke();
     g.fill(32);
-    g.rect(X_PADDING, Y_PADDING, ARROW_WIDTH, ARROW_HEIGHT);
+    g.rect(0, 0, w, h);
     if(isArrowMoving){
       // 縞模様の描画
       g.fill(150,240,50);
-      for(int y=yBorderTop-BORDER_INTERVAL; y<ARROW_HEIGHT; y+=BORDER_INTERVAL){
-        g.rect(X_PADDING, y+Y_PADDING, ARROW_WIDTH, BORDER_WEIGHT);
+      for(int y=yBorderTop-BORDER_INTERVAL; y<h; y+=BORDER_INTERVAL){
+        g.rect(0, y, w, BORDER_WEIGHT);
       }
     }
     yBorderTop+=BORDER_SPEED; if(yBorderTop>=BORDER_INTERVAL) yBorderTop-=BORDER_INTERVAL;
     g.tint(FILL_COLOR); // 画像の白をFILL_COLORに変更
-    g.image(arrowBack, X_PADDING, Y_PADDING);
+    g.image(arrowBack, 0, 0);
     g.noTint();
-    g.endDraw();
   }
 }
