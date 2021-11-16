@@ -30,7 +30,10 @@ void setup(){
 }
 void draw(){
   background(255); // 適当に設定
-  if(!sc.isRunning()&&millis()-startAt>=6000) sc.start();
+  if(!sc.isRunning()&&millis()-startAt>=6000){
+    sc.start();
+    fd.restart();
+  }
   if(!dw.isDrawing()&&millis()-startAt>=9000) dw.start();
   if(millis()>=prevTimeUpdated+TIMEUNIT){
     sc.step();
