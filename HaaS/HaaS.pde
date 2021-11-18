@@ -1,6 +1,7 @@
 // 実行用ファイル
 
 import oscP5.*;
+import processing.sound.WhiteNoise;
 
 BrainWaveStorage bws;
 FluctuationDetector fd;
@@ -9,6 +10,7 @@ DrawingWindow dw;
 GraphWindow gw;
 ArrowWindow aw;
 LinkLine link;
+WhiteNoise noise;
 final int BLACK_W=200;
 final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
 int prevTimeUpdated, startAt;
@@ -29,6 +31,8 @@ void setup(){
   gw=new GraphWindow(this, width-BLACK_W-520, height/2-150, 520,300,bws);
   link=new LinkLine(this,dwSize,height/2,width-BLACK_W-520,height/2);
   aw=new ArrowWindow(this, width-175, height/2-125, 150,250);
+  noise=new WhiteNoise(this);
+  noise.play(0.15f);
   prevTimeUpdated=millis();
   startAt=millis();
   frameRate(60);
