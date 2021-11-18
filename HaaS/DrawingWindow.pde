@@ -13,7 +13,7 @@ static enum State {
 
 class DrawingWindow extends BaseWindow{
   private final int UNIT_WIDTH, UNIT_HEIGHT; // 1マスの幅と高さ [px]
-  private final int N_WIDTH=34, N_HEIGHT=12; // 横のマス数と縦のマス数
+  private final int N_WIDTH=34, N_HEIGHT=24; // 横のマス数と縦のマス数
   private final int offsetX, offsetY; // 画像位置のオフセット(padding内部が基準)
   private final int TIMEUNIT=500; // マスの値を更新する時間間隔 [ms]
   private State[] pixels;
