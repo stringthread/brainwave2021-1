@@ -13,7 +13,7 @@ class SoundController {
   int j = 0;
   SoundController(PApplet parent){
     this.parent=parent; // メインファイルでthisが指す対象を持っていないと音声を読み込めない
-    a = parent.loadTable("rubin.csv", "header");
+    a = parent.loadTable("rubin2bai.csv", "header");
     soundfile = new SoundFile(parent, "1kHz.wav");
   }
   public void draw(){ // この関数をメインファイルのdraw関数で呼び出す想定
@@ -33,7 +33,7 @@ class SoundController {
       i += 1;
     }
     if (i == a.getRowCount()){
-      noLoop();
+      isRunning=false;
     }
   }
 }

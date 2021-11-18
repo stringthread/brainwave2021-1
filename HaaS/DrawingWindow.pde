@@ -31,7 +31,7 @@ class DrawingWindow extends BaseWindow{
     UNIT_HEIGHT=this.h/N_HEIGHT;
     offsetX=(this.w-UNIT_WIDTH*N_WIDTH*2)/2;
     offsetY=(this.h-UNIT_HEIGHT*N_HEIGHT)/2;
-    pixels=new State[UNIT_HEIGHT*UNIT_WIDTH];
+    pixels=new State[N_HEIGHT*N_WIDTH+100000];
     reset();
   }
   void reset(){

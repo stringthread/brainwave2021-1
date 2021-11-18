@@ -51,7 +51,7 @@ class GraphWindow extends BaseWindow {
     // 閾値描画
     g.stroke(THRESHOLD_COLOR);
     x1 = offsetX;
-    y1 = offsetY+int(0.3f*displayScale);
+    y1 = offsetY+int(0.34f*displayScale);
     x2 = graphW;
     y2 = y1;
     g.line(x1, y1, x2, y2);
