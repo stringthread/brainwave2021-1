@@ -10,3 +10,4 @@ application.macosx
 .vscode/
 out
 build/
+/local/
