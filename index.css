@@ -48,3 +48,9 @@ li:before {
   font-size: 1.2em;
   padding-right: 0.3rem;
 }
+
+#muse-img {
+  display: inline-block;
+  width: 100%;
+  max-width: 500px;
+}
