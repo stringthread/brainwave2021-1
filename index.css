@@ -70,3 +70,22 @@ li:before {
   width: 100%;
   max-width: 500px;
 }
+
+details {
+  background: #fff;
+  border: 1px solid #181818;
+  border-radius: 6pt 6pt 0 0;
+  margin: 1em 0;
+}
+
+summary {
+  font-weight: 700;
+  padding: 1em;
+}
+summary:focus {
+  outline: 2px solid #181818;
+}
+
+.wrap-details {
+  padding: 1em;
+}
