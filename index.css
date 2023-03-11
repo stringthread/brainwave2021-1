@@ -2,6 +2,10 @@ html * {
   font-family: "M PLUS 1 Code", sans-serif;
 }
 
+body {
+  background-color: #d9d7db;
+}
+
 header {
   margin: 0 min(10%, calc((100% - 800px) * 0.5));
 }
@@ -10,7 +14,8 @@ main {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding-bottom: 4em;
+  padding: 0 4em 4em 4em;
+  background-color: #fff;
 }
 
 section {
