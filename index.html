@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human as a Sensor</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrap-title">
+      <h1>Human as a Sensor</h1>
+    </div>
+  </header>
+  <main>
+    <article id="article-work">
+      <section id="section-images">
+        <img src="static/guide_image.png" alt="元画像">
+        <img src="static/result_image.png" alt="生成結果">
+      </section>
+      <section id="section-movie">
+        <div class="youtube">
+          <iframe src="https://www.youtube.com/embed/4av4sa2-srM" title="Human as a Sensor" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </section>
+    </article>
+    <article id="article-concept">
+      <section id="section-background">
+        <h3>背景</h3>
+        <p>
+          現代人は、自分自身の意志によって主体的に生きていると信じ込んている。自分は外部と関わっていても、その「核」は外部ではなく、自分の中にこそあると信じ込んている。自分の一挙手一投足は、価値判断は、自分の意志によって決めていると信じ込んでいる。
+        </p>
+        <p>
+          しかし、データ化が進行する現代、SNSのフォロー、Amazonリコメンドなど、外部には耳ざわりのよい刺激がたくさんある。エコーチェンバー効果といった学術的な知見を引くまでもなく、それらは私達の好みや思考に深く入り込み、根を張っている。
+        </p>
+        <p>現代人は、ほんとうに自分で考え、価値を判断し、行動を決めているのだろうか。「主体」なるものは、ほんとうに人間の中にあるのだろうか。それは、もしかするとSNSやAmazonリコメンドにこそあるのではなかろうか。</p>
+      </section>
+      <section id="section-stance">
+        <h3>作品における立場</h3>
+        <p>本作品は、人間から主体性を収奪し、外部から情報を受け取るだけのセンサ作用を可視化するインスタレーションである。</p>
+        <p>本作品では、外部刺激によって理性の象徴とされる脳の動きを制御する。ここで外部のコンピュータは、人間の脳を手段として用いて、コンピュータ自身の目的を遂行する。</p>
+        <p>人間の脳は主体的な行動ではなく外部の意図に従って動作し、本作品の出力に人間の意思は介在しない。本作品において人間は、ただコンピュータからの入力を伝達するセンサにすぎない。</p>
+      </section>
+    </article>
+    <article id="article-process">
+      <section id="section-process">
+        <h3>プロセス</h3>
+        <img src="static/process.jpg" alt="process image">
+        <ol>
+          <li>主体であるプログラムは、画像を音情報に変換し、被験者に与える</li>
+          <li>被験者は、目の開閉により音情報を脳波に変換する</li>
+          <li>プログラムは、被験者の脳波の変動を読み取り、画像に変換する</li>
+        </ol>
+        <details id="how-to-draw">
+          <summary>画像描画の仕組み</summary>
+          <img src="static/process_how_to_draw.jpg" alt="描画方法説明">
+          <p>人間は目を開くことによってα波の振幅が低下する。そのため、目の開閉によってα波の振幅の大きさを操作することができる。</p>
+          <p>本作品では、音を用いて被験者に目を開けさせることで、一時的にα波の振幅を低下させる。</p>
+          <p>描画プロセスでは、α波の振幅低下をトリガーに描画色を白から黒へ変化させる。</p>
+          <p>この手法によって、各行ごとに異なるタイミングで描画色を変化させることで、入力画像と同じものを出力へ伝達させる。</p>
+        </details>
+      </section>
+      <section id="section-tools">
+        <h3>使用ツール等</h3>
+        <section>
+          <h4>開発言語</h4>
+          <span>Processing</span>
+          <a href="https://github.com/stringthread/brainwave2021-1">GitHub</a>
+        </section>
+        <section>
+          <h4>使用機材</h4>
+          <span>muse - the brain sensing headband</span>
+          <img src="https://choosemuse.com/app/uploads/2018/10/muse-2-product-page-3.jpg" alt="muse machine appearance">
+          <a href="https://choosemuse.com/">Muse HP</a>
+        </section>
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>
