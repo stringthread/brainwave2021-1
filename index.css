@@ -2,14 +2,25 @@ html * {
   font-family: "M PLUS 1 Code", sans-serif;
 }
 
+header {
+  margin: 0 min(10%, calc((100% - 800px) * 0.5));
+}
+
 main {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 4em;
 }
 
 section {
   margin: 2em 0;
+}
+
+p {
+  margin: 0.5em 0;
+  line-height: 1.4;
+  text-indent: 0.5em;
 }
 
 #section-images {
