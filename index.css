@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  margin: 0 min(10%, calc((100% - 800px) * 0.5));
+  margin: 8px min(10%, calc((100% - 800px) * 0.5)) 2em;
 }
 
 main {
