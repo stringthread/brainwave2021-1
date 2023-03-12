@@ -7,7 +7,11 @@ body {
 }
 
 header {
-  margin: 8px max(0px, calc((100% - 800px) * 0.3)) 2em;
+  margin: 4px max(0px, calc((100% - 800px) * 0.3)) 2em;
+}
+
+header h1 {
+  line-height: 1;
 }
 
 main {
