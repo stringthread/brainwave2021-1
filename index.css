@@ -39,9 +39,12 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1em;
 }
 #section-images > figure > img {
-  margin: 1em;
+  padding: 1em;
+  aspect-ratio: 1;
+  background-color: #808080;
 }
 
 .youtube {
